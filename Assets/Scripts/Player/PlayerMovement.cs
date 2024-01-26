@@ -13,11 +13,18 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveDirection;
 
+    private Animator animator;
+
+    private readonly int moveX = Animator.StringToHash(name: "MoveX");
+    private readonly int moveY = Animator.StringToHash(name: "MoveY");
+
     private void Awake()
     {
         actions = new PlayerActions();
 
         rb2D = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
     }
 
 
@@ -39,6 +46,14 @@ public class PlayerMovement : MonoBehaviour
     private void ReadMovement()
     {
         moveDirection = actions.Movement.Move.ReadValue<Vector2>().normalized;
+
+        // Update animation float params
+
+        if (moveDirection == Vector2.zero) return;
+
+        animator.SetFloat(moveX, moveDirection.x);
+        animator.SetFloat(moveY, moveDirection.y);
+
     }
 
     private void OnEnable()
