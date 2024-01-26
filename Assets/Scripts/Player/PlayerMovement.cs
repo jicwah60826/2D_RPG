@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private readonly int moveX = Animator.StringToHash(name: "MoveX");
     private readonly int moveY = Animator.StringToHash(name: "MoveY");
 
+    private readonly int moving = Animator.StringToHash(name: "Moving");
+
     private void Awake()
     {
         actions = new PlayerActions();
@@ -49,7 +51,15 @@ public class PlayerMovement : MonoBehaviour
 
         // Update animation float params
 
-        if (moveDirection == Vector2.zero) return;
+        if (moveDirection == Vector2.zero)
+
+        {
+            animator.SetBool(moving, false);
+
+            return;
+        }
+
+        animator.SetBool(moving, true);
 
         animator.SetFloat(moveX, moveDirection.x);
         animator.SetFloat(moveY, moveDirection.y);
