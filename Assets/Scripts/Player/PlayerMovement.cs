@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
     private readonly int moveY = Animator.StringToHash(name: "MoveY");
     private readonly int moving = Animator.StringToHash(name: "Moving");
 
-    [SerializeField] PlayerStats playerStats;
-
     private void Awake()
     {
         actions = new PlayerActions();

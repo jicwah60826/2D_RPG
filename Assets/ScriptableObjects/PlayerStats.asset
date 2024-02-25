@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3432bb05b12bd85488a0cfbaeeea8eb9, type: 3}
-  m_Name: PlayerScriptableObject
+  m_Script: {fileID: 11500000, guid: c4b0f52a409a3f84887fdd95a5dcf5d0, type: 3}
+  m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  level: 1
+  health: 8
+  maxHealth: 20
