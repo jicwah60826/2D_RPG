@@ -7,25 +7,23 @@ public class PlayerMovement : MonoBehaviour
     [Header("Config")]
     [SerializeField] private float speed;
 
+    private PlayerAnimations playerAnimations;
+
     private PlayerActions actions;
 
     private Rigidbody2D rb2D;
 
     private Vector2 moveDirection;
 
-    private Animator animator;
 
-    private readonly int moveX = Animator.StringToHash(name: "MoveX");
-    private readonly int moveY = Animator.StringToHash(name: "MoveY");
-    private readonly int moving = Animator.StringToHash(name: "Moving");
+
 
     private void Awake()
     {
         actions = new PlayerActions();
-
         rb2D = GetComponent<Rigidbody2D>();
+        playerAnimations = GetComponent<PlayerAnimations>();
 
-        animator = GetComponent<Animator>();
     }
 
 
@@ -53,16 +51,12 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection == Vector2.zero)
 
         {
-            animator.SetBool(moving, false);
-
+            playerAnimations.SetMoveBoolTransition(false);
             return;
         }
 
-        animator.SetBool(moving, true);
-
-        animator.SetFloat(moveX, moveDirection.x);
-        animator.SetFloat(moveY, moveDirection.y);
-
+        playerAnimations.SetMoveBoolTransition(true);
+        playerAnimations.SetMoveAnimation(moveDirection);
     }
 
     private void OnEnable()
